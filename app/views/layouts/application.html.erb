@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+  <title>Mitsukeru</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body class="body">
+
+  <header class="header">
+    <div class="mitsukeru-img">
+      <img src="/assets/mitsukeru.jpg" width="150x" height="70px" alt="girl">
+      <div class="mitsukeru-sub">
+      ひとり親家庭のためのお悩み相談
+    </div>
+    </div>
+
+    <nav class="nav-header">
+      <% if user_signed_in? %>
+       <div class="btn-group" role="group" aria-label="header-action" >
+         <%= button_to "TOPページ", root_path, method: :get, class: "btn btn-link btn-sm" %>
+         <%= button_to "お悩み一覧", tweets_path, method: :get, class: "btn btn-link btn-sm" %>
+         <%= button_to "新規投稿へ", new_tweet_path, method: :get,  class: "btn btn-link btn-sm" %>
+         <%= button_to "マイページ", user_path(current_user.id), method: :get, class: "btn btn-link btn-sm" %>
+         <%= button_to "ログアウト", destroy_user_session_path, method: :delete , class: "btn btn-link btn-sm" %>
+         <%= button_to "通知", notifications_path, method: :get, class: "btn btn-link btn-sm" %>
+         <% if unchecked_notifications.any? %>
+          <i class="fa fa-circle" style="color: gold;"></i>
+         <% end %>
+       </div>  
+       
+      <% else %>
+       <div class="btn-group" role="group" aria-label="header-action" >
+         <%= button_to "TOPページ", root_path, method: :get, class: "btn btn-link btn-sm" %>
+         <%= button_to "ログイン", tweets_path, method: :get, class: "btn btn-link btn-sm" %>
+         <%= button_to "新規登録", new_user_registration_path, method: :get, class: "btn btn-link btn-sm" %>
+       </div>
+      <% end %>
+    </nav>
+
+
+  </header>
+
+  <main>
+    <%= yield %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </main>
+
+  <footer class="footer">
+   <nav class="footer-nav">
+     <p><div align="center">Copyright©2020 Mitsukeru </div></p>
+   </nav>
+  </footer>
+
+</body>
+
+

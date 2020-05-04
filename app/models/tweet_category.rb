@@ -1,0 +1,2 @@
+class TweetCategory < ApplicationRecord
+end

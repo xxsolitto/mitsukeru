@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <h1 class="text-center font-weight-bold pt-5">みつけるにログインする</h1>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field pt-3">
+          <%= f.label :メールアドレス %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-12 form-control" %>
+        </div>
+
+        <div class="field pt-3">
+          <%= f.label :パスワード %><br />
+          <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "col-md-12 form-control" %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="custom-check-1">
+          <label class="custom-control-label" for="custom-check-1">内容を保存する</label>
+        </div>
+        <% end -%>
+
+        <div class="actions pt-3">
+          <input type="submit" class="new-btn" value="ログインする">
+        </div>
+      <% end %>
+      
+      <div class="pt-3">
+      </div>
+      <%= render "devise/shared/links" %>
+    </div>
+
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>
