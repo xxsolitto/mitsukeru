@@ -6,7 +6,7 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2'
 # Use mysql as the database for Active Record
-#gem 'mysql2', '>= 0.4.4'
+gem 'mysql2', '>= 0.4.4', group: :development
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -51,6 +51,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-group :production do
-  gem 'pg'
-end
+gem 'pg', group: :production
