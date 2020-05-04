@@ -1,0 +1,11 @@
+<div class="user-index">
+<h3>このサイトのユーザー</h3>
+<% @users.each do |u| %>
+  <hr>
+  <h6>名前:<a href="/users/<%= u.id %>"><%= u.name %></a></h6>
+  <h6>メールアドレス:<%= u.email %></h6>
+<% end %>
+<hr>
+
+<%= link_to "ホームへ戻る", tweets_path %>
+</div>

@@ -1,0 +1,19 @@
+<div class="follower">
+<h3><a href="/users/<%= @user.id %>"><%= @user.name %></a>のフォロワー</h3>
+<hr>
+<% if @user.followers.exists? %>
+<% @user.followers.each do |user| %>
+    <table>
+     <tr>
+      <td><a href="/users/<%= user.id %>"><%= user.name %>/</a></td>
+      <td><%= user.email %></td>
+     </tr> 
+    </table>
+<% end %>
+<% else %>
+  フォロワーはいません
+<% end %>  
+<hr>
+<%= link_to "ユーザー詳細へ戻る", user_path(@user.id) %><br>
+<%= link_to "ホームへ戻る", tweets_path %>
+</div>

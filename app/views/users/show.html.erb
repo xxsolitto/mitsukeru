@@ -1,0 +1,49 @@
+<div class="user-show">
+<h3><%= @user.name %>/<%= @user.email %></h3>
+<%= render 'stats' %>
+<%= render 'follow_form' %>
+
+<% if @user.id == current_user.id %>
+<% else %>
+  <% if @isRoom == true %>
+    <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, :value=> @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if @user.tweets.exists? %>
+<div class="tweets-container">
+  <% @user.tweets.each do |t| %>
+    <div class="tweet">
+    <hr>
+      <div class="main-box">
+        <div class="left-container">
+          <%= t.body %>
+        </div>
+          <div class=right-container>
+            <div class="btn-group" role="group" aria-label="tweet-action">
+              <%= button_to "詳細へ", tweet_path(t.id), class: "btn btn-link btn-sm" %>
+              <% if current_user == t.user %>
+               <%= button_to "削除する", tweet_path(t.id), method: :delete , class: "btn btn-link btn-sm" %>
+              <% end %>    
+           </div>
+         </div>
+        <p class="time"><%= t.created_at %></p>
+    </div>
+  <% end %>
+</div>
+<% else %>
+<hr>
+ 投稿はありません
+<% end %>
+
+<hr>
+<%= link_to "ホームへ戻る", tweets_path %>
+
+</div>
