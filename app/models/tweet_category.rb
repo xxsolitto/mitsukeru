@@ -1,2 +1,0 @@
-class TweetCategory < ApplicationRecord
-end
